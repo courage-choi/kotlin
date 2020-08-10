@@ -132,8 +132,7 @@ object LightClassUtil {
         getWrappingClasses(declaration).flatMap { it.methods.asSequence() }
             .filterIsInstance<KtLightMethod>()
             .filter {
-                val kotlinOrigin = it.kotlinOrigin
-                kotlinOrigin === declaration
+                it.kotlinOrigin === declaration || it.navigationElement === declaration
             }
 
     private fun getWrappingClass(declaration: KtDeclaration): PsiClass? {
